@@ -1,0 +1,21 @@
+services:
+  api:
+    build: online-shop-api
+    depends_on:
+      - rabbitmq
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    ports:
+      - "8080:8080"
+  external-system:
+    build: external-product-system
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    depends_on:
+      - rabbitmq
+  rabbitmq:
+    image: rabbitmq:3.11.11-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+

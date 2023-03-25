@@ -1,0 +1,3 @@
+rootProject.name = 'online-shop-system'
+include('external-product-system')
+include('online-shop-api')

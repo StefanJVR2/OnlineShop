@@ -1,0 +1,53 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  1
+       author:  SJ Janse van Rensburg
+       changes:
+         -  createTable:
+              tableName:  product
+              columns:
+                -  column:
+                     name:  id
+                     type:  int
+                     constraints:
+                       primaryKey:  true
+                       nullable:  false
+                -  column:
+                     name:  name
+                     type:  varchar(50)
+                     constraints:
+                       nullable: false
+                -  column:
+                     name:  description
+                     type:  varchar(2000)
+                -  column:
+                     name:  price
+                     type:  float
+                - column:
+                    name: image_url
+                    type: varchar(2000)
+  - changeSet:
+      id: 2
+      author: SJ Janse van Rensburg
+      changes:
+        - loadUpdateData:
+            columns:
+              - column:
+                  name: id
+                  type: NUMERIC
+              - column:
+                  name: name
+                  type: VARCHAR
+              - column:
+                  name: description
+                  type: VARCHAR
+              - column:
+                  name: price
+                  type: FLOAT
+              - column:
+                  name: image_url
+                  type: VARCHAR
+            file: classpath:db/changelog/data/product-data.csv
+            separator: ;
+            primaryKey: id
+            tableName: product
